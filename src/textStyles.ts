@@ -216,7 +216,7 @@ export default async function(){
             }
             
         })
-        return {data: obj, errors: typographyErrors}
+        return {data: obj, errors: errors}
     }
 
     return {
