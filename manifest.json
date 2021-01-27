@@ -1,7 +1,8 @@
 {
-	"name": "Vue3 Plugin Template",
+	"name": "Figma to NewsKit",
 	"api": "1.0.0",
 	"main": "dist/code.js",
 	"ui": "dist/ui.html",
-	"id": "my-plugin-id"
+	"id": "934126878505200119",
+	"enablePrivatePluginApi": true
 }

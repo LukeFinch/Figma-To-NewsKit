@@ -1,11 +1,37 @@
-import { dispatch, handleEvent } from './codeMessageHandler';
-figma.showUI(__html__);
+import { handleEvent, dispatch } from './codeMessageHandler'
 
-// The following shows how messages from the UI code can be handled in the main code.
-handleEvent('createNode', () => {
-	const node = figma.createRectangle();
-	node.name = node.id;
+console.log(handleEvent)
 
-	// This shows how the main code can send messages to the UI code.
-	dispatch('nodeCreated', node.id);
+figma.showUI(__html__, {
+	width: 400,
+	height: 400
 });
+
+
+
+
+import getTextStyles from './textStyles';
+import getColors from './colors'
+
+
+handleEvent("resizeUI", (size) => {
+	figma.ui.resize(size[0],size[1])
+})
+
+handleEvent("UIReady", _ => {
+console.log('ready')
+ sendThemeToUI()
+})
+
+async function sendThemeToUI(){
+
+	const colors = getColors()
+	dispatch('colors',colors.colors)
+	
+	const textStyles = await getTextStyles()
+	
+	dispatch('fontsJson',textStyles.fonts)
+	dispatch('typographyJson',textStyles.typography)
+	
+
+}

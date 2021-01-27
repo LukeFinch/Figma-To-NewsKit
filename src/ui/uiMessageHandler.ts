@@ -1,3 +1,4 @@
+
 const eventListeners: { type: String; callback: Function }[] = [];
 export const dispatch = (action: String, data?: any) => {
 	parent.postMessage({ pluginMessage: { action, data } }, '*');

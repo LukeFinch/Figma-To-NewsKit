@@ -8,8 +8,15 @@
 		"build": "webpack --mode=production"
 	},
 	"dependencies": {
+		"@figma-plugin/helpers": "^0.15.1",
 		"@vue/compiler-sfc": "^3.0.2",
-		"figma-plugin-ds": "^0.1.8"
+		"@zip.js/zip.js": "^2.0.7",
+		"dotenv": "^8.2.0",
+		"figma-plugin-ds": "^0.1.8",
+		"fs": "0.0.1-security",
+		"jszip": "^3.5.0",
+		"matrix-inverse": "^2.0.0",
+		"vue-json-pretty": "^2.0.2"
 	},
 	"devDependencies": {
 		"@figma/plugin-typings": "^1.18.2",
