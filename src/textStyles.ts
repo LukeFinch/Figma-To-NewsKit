@@ -14,11 +14,12 @@ import {
 } from './utils'
 
 export default async function(){
-    var API_Doc = API_Doc ? API_Doc : await fetchApiDoc() // Fetch once we hope
-    const getTypographyNodes = async(doc) => {
-        const pages = doc.document.children
+    //var API_Doc = API_Doc ? API_Doc : await fetchApiDoc() // Fetch once we hope
+    const getTypographyNodes = async() => {
     
-        var typographyPage = pages.find(p => p.name.includes('Typography')) ? pages.find(p => p.name.includes('Typography')).id : figma.notify('Could not find a typography page');
+        const typographyPage = figma.root.findChild(n => n.name.toLowerCase().includes('typography')).id
+    
+        //var typographyPage = pages.find(p => p.name.includes('Typography')) ? pages.find(p => p.name.includes('Typography')).id : figma.notify('Could not find a typography page');
     
         //This is a rather strict way of getting what we want.. if the structure changes this will break
         var pageNodes = (await figmaFetch(`https://api.figma.com/v1/files/${fileKey}?ids=${typographyPage}`) as any).document.children.find(p => p.id == typographyPage)
@@ -31,7 +32,7 @@ export default async function(){
         }
         return styledNodes
     }
-    var typographyNodes = typographyNodes ? typographyNodes : await getTypographyNodes(API_Doc);
+    var typographyNodes = typographyNodes ? typographyNodes : await getTypographyNodes();
         
     const getFontsJson = async() => {
         let errors = []
@@ -110,7 +111,6 @@ export default async function(){
         
         const getFontFamilies = async () => {
             let obj = {};
-            let doc = API_Doc
             let fontSizes =  getFontSizes()
         
             // let cropArray = (Object.entries(doc.document.sharedPluginData.TextCrop)).map(
