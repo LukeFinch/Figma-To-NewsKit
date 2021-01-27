@@ -5,13 +5,28 @@
 <vue-json-pretty  v-if="colorsJson" :data="colorsJson" :deep="2" :virtual="true" style="height: 200px; width: 400px;"> </vue-json-pretty>
 <div v-else class="icon icon--spinner icon--spin"></div>
 </Disclosure>
+<Disclosure v-if="colorsErr.length > 0" :heading="`${colorsErr.length} Errors`">
+<ul>
+  <li v-for="(err, index) in colorsErr" :key="index">{{err}}</li>
+</ul>
+</Disclosure>
 <Disclosure :expanded="false" :section="true" :heading="'fonts.json'">
 <vue-json-pretty  v-if="fontsJson" :data="fontsJson" :deep="2" :virtual="true" style="height: 200px; width: 400px;"> </vue-json-pretty>
 <div v-else class="icon icon--spinner icon--spin"></div>
 </Disclosure>
+<Disclosure v-if="fontsErr.length > 0" :heading="`${fontsErr.length} Errors`">
+<ul>
+  <li v-for="(err, index) in fontsErr" :key="index">{{err}}</li>
+</ul>
+</Disclosure>
 <Disclosure :expanded="false" :section="true" :heading="'typographyPresets.json'">
 <vue-json-pretty  v-if="typographyJson" :data="typographyJson" :deep="2" :virtual="true" style="height: 200px; width: 400px;"> </vue-json-pretty>
 <div v-else class="icon icon--spinner icon--spin"></div>
+</Disclosure>
+<Disclosure v-if="typographyErr.length > 0" :heading="`${typographyErr.length} Errors`">
+<ul>
+  <li v-for="(err, index) in typographyErr" :key="index">{{err}}</li>
+</ul>
 </Disclosure>
 
 
@@ -48,6 +63,9 @@ export default {
   const typographyJson = ref()
   const fontsJson = ref()
   const colorsJson = ref()
+  const typographyErr = ref([])
+  const fontsErr = ref([])
+  const colorsErr = ref([])
 
   const allLoaded = computed(() => {
     let val = typographyJson.value && fontsJson.value && colorsJson.value ? true : false
@@ -133,16 +151,17 @@ export default {
         
       handleEvent("colors", data => {
        
-        colorsJson.value = data
+        colorsJson.value = data.data
+        colorsErr.value = data.errors
       });
 
-      handleEvent("fontsJson", data => {
-       
-        fontsJson.value = data
+      handleEvent("fontsJson", data => {       
+        fontsJson.value = data.data
+        fontsErr.value = data.errors
       });
-      handleEvent("typographyJson", data => {
-        
-        typographyJson.value = data
+      handleEvent("typographyJson", data => {        
+        typographyJson.value = data.data
+        typographyErr.value = data.errors
       });
 
 
@@ -152,6 +171,10 @@ export default {
       typographyJson,
       fontsJson,
       colorsJson,
+      typographyErr,
+      fontsErr,
+      colorsErr,
+      
       allLoaded,
       saveFiles
     };

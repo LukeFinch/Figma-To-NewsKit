@@ -46,13 +46,17 @@ function getOverlays(){
 
 function getThemedColors(){
     let obj = {}
+    let errors = []
     paints.filter(p => p.name.startsWith('ink') || p.name.startsWith('interactive') || p.name.startsWith('interface')).map(p => {
         const style = getCSSForPaint(p)
         const token = getKeyByValue(palettes, style.color)
         let name = style.name.split('/')[style.name.split('/').length -1].trim()
-        obj[name] = `{{${token}}}`
+        if(!token){
+            errors.push(`${name}: couldn't find palette to match`)
+        }
+        obj[name] = `{{colors.${token}}}`
     })
-    return obj
+    return {data: obj, errors: errors}
 }
 
 export default function(){

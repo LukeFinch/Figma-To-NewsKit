@@ -11,7 +11,6 @@ import {
     fileKey,
     allChildren,
     getKeyByValue,
-    fetch,
 } from './utils'
 
 export default async function(){
@@ -35,7 +34,7 @@ export default async function(){
     var typographyNodes = typographyNodes ? typographyNodes : await getTypographyNodes(API_Doc);
         
     const getFontsJson = async() => {
-        
+        let errors = []
         const textStyles: Array < TextStyle > = figma.getLocalTextStyles()
 
         
@@ -58,6 +57,7 @@ export default async function(){
                 if (style.lineHeight.unit == "AUTO") {
                     //Shouldn't use auto
                     figma.notify(`${style.name} is using AUTO for lineHeight, please set it to px`)
+                    errors.push(`${style.name} is using AUTO for lineHeight, please set it to px`)
                     lh = "Value isn't set properly in figma, please fix and re-export theme"
                 }
                 if (style.lineHeight.unit == "PERCENT") {
@@ -150,6 +150,7 @@ export default async function(){
             return obj as object
         }
         
+        
         const fontsJson = async () => {
             return Object.fromEntries([
             //All the token groups that make up font.json
@@ -163,59 +164,59 @@ export default async function(){
         }).flat(1))
         }
         
-        return await fontsJson()    
+        return {data:await fontsJson(), errors: errors}    
      
     }
     
     var fontsJson = fontsJson ? fontsJson : await getFontsJson(); 
        
-    async function getTypographyPresets(){    let obj = {}
-       
-    console.log(lineHeightsEm)
+    async function getTypographyPresets(){
+           let obj = {}       
+           let errors = [] 
       
         typographyNodes.forEach(style =>{
-            const token = style.name.split('/')[style.name.split('/').length-1]
-         
+            const token = style.name.split('/')[style.name.split('/').length-1]         
 
             //Eww this is gross
             let familyObj = getKeyByValue(fontsJson, Object.values(fontsJson).find((item: any) => item.fontFamily === `${style.style.fontPostScriptName}`))
 
-
-            // let lineHeight = getKeyByValue(fontsJson,lineHeightPxToEm(
-            //         style.style.lineHeightPx,
-            //         style.style.fontSize,
-            //         lineHeightsEm
-            //         )).includes('fontLineHeight') ? getKeyByValue(fontsJson,lineHeightPxToEm(
-            //             style.style.lineHeightPx,
-            //             style.style.fontSize,
-            //             lineHeightsEm
-            //             )) : undefined;
-
-            //let lineHeight = "Awaiting a fix"
-
-            // lineHeightsEm.forEach(lh =>
-            //     {
-            //         let newLh = Math.round((lh*style.style.fontSize)/GRID_SIZE) * GRID_SIZE
-            //         console.log(newLh, style.style.lineHeightPx)
-            //     }
-            //     )
+            let fontWeight = getKeyByValue(fontsJson, style.style.fontWeight).includes('fontWeight') ? getKeyByValue(fontsJson, style.style.fontWeight) : undefined
+            
+            let fontSize = getKeyByValue(fontsJson, style.style.fontSize + 'px').includes('fontSize') ? getKeyByValue(fontsJson, style.style.fontSize + 'px') : undefined
 
             let lineHeightEm = (Array.from(lineHeightsEm) as number[]).find(lh => Math.round((lh*style.style.fontSize)/GRID_SIZE) * GRID_SIZE == style.style.lineHeightPx )
-            let lineHeight = getKeyByValue(fontsJson,lineHeightEm)
+            let lineHeight = getKeyByValue(fontsJson,lineHeightEm).includes('fontLineHeight') ? getKeyByValue(fontsJson,lineHeightEm) : undefined;
 
-            let letterSpacing = getKeyByValue(fontsJson,
-                style.style.letterSpacing).includes('fontLetterSpacing') ? getKeyByValue(fontsJson,   style.style.letterSpacing) : undefined;
+            let letterSpacing = getKeyByValue(fontsJson, style.style.letterSpacing).includes('fontLetterSpacing') ? getKeyByValue(fontsJson, style.style.letterSpacing) : undefined;
+            
 
-            obj[token] = {
+                if(!familyObj){
+                    errors.push(`${token}: Couldn't find font family`)
+                }
+                if(!fontWeight){
+                    errors.push(`${token}: Couldn't find font weight`)
+                }
+                if(!fontSize){
+                    errors.push(`${token}: Couldn't find font size`)
+                }
+                if(!lineHeight){
+                    errors.push(`${token}: Couldn't find line height`)
+                }
+                if(!letterSpacing){
+                    errors.push(`${token}: Couldn't find letter spacing`)
+                }
+
+
+                obj[token] = {
                 "fontFamily": `{{fonts.${familyObj}.fontFamily}}`,
-                "fontWeight": `{{fonts.${getKeyByValue(fontsJson,   style.style.fontWeight)}}}`,
+                "fontWeight": `{{fonts.${fontWeight}}}`,
                 "fontSize": `{{fonts.${getKeyByValue(fontsJson, style.style.fontSize + 'px')}}}`,
                 "lineHeight": `{{fonts.${lineHeight}}}`,
                 "letterSpacing": `{{fonts.${letterSpacing}}}`,
             }
             
         })
-        return obj
+        return {data: obj, errors: typographyErrors}
     }
 
     return {
@@ -225,49 +226,7 @@ export default async function(){
 }
 
 
-// function lineHeightPxToEm(lineHeight,fontSize){
-//     const inc = 1 / 24 //Incremement em in 24ths
-//     let adjLineHeight
-//     let outputEm
-//     function getFractions(num: number){
-//         let fracs = []
-//         for(var i = 0; i < num; i++){
-//             fracs.push(((num-i)/num).toPrecision(4))
-//         }
-//         return fracs
-//     }
 
-
-//     //all the 6ths 8ths and 10ths
-//     var increments = [...getFractions(6),...getFractions(7), ...getFractions(8), ...getFractions(10)]
-
-//     //Anything larger than 4em for a lineheight is foolish
-//     //We could maybe do this in reverse however
-//     for (var i = 0; i < 4; i ++) {
-//         if (i == 4) {
-//             //Couldn't find a match, notify the user they should fix it 
-//             figma.notify(`Couldn't find a line height in em for ${lineHeight}`)
-//             console.error("Couldn't find a line height (probably not a multiple of gridSize)")
-//             break;
-//         }
-//         increments.forEach(increment => {
-//             let em = i + parseFloat(increment)  
-//             //Keep incrementing em value
-//             let estLineHeight = em * fontSize
-//             //This function rounds it to grid size, if it already matches, no change
-//             adjLineHeight = (Math.round((estLineHeight * fontSize) / GRID_SIZE) * GRID_SIZE) / fontSize;
-//             if (adjLineHeight == lineHeight) {
-//                 //If the lineHeight (em) matches up to the value after rounding to gridSize 
-//                outputEm = em         
-//             }
-//             else {
-//                 outputEm = lineHeight / fontSize
-//             }
-//         })
-        
-//     }
-//     return outputEm ? outputEm.toPrecision(4) : undefined;
-// }
 
 function lineHeightPxToEm(lineHeight,fontSize,currentSet){
     //console.log(lineHeight,fontSize,currentSet)
@@ -294,11 +253,4 @@ function lineHeightPxToEm(lineHeight,fontSize,currentSet){
           
         
 }
-
-let myGrid = figma.createGridStyle()
-myGrid.layoutGrids = [{
-    pattern: "GRID",
-    sectionSize: 4
-    }];
-myGrid.name = "My Grid Name"
 
