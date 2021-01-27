@@ -173,21 +173,33 @@ export default async function(){
     async function getTypographyPresets(){
            let obj = {}       
            let errors = [] 
-      
+            console.log(fontsJson.data)
         typographyNodes.forEach(style =>{
-            const token = style.name.split('/')[style.name.split('/').length-1]         
+            const token = style.name.split('/')[style.name.split('/').length-1]
+            
+               
 
             //Eww this is gross
-            let familyObj = getKeyByValue(fontsJson, Object.values(fontsJson).find((item: any) => item.fontFamily === `${style.style.fontPostScriptName}`))
-
-            let fontWeight = getKeyByValue(fontsJson, style.style.fontWeight).includes('fontWeight') ? getKeyByValue(fontsJson, style.style.fontWeight) : undefined
+            let familyObj = getKeyByValue(fontsJson.data, Object.values(fontsJson.data).find((item: any) => item.fontFamily === `${style.style.fontPostScriptName}`))
             
-            let fontSize = getKeyByValue(fontsJson, style.style.fontSize + 'px').includes('fontSize') ? getKeyByValue(fontsJson, style.style.fontSize + 'px') : undefined
 
-            let lineHeightEm = (Array.from(lineHeightsEm) as number[]).find(lh => Math.round((lh*style.style.fontSize)/GRID_SIZE) * GRID_SIZE == style.style.lineHeightPx )
-            let lineHeight = getKeyByValue(fontsJson,lineHeightEm).includes('fontLineHeight') ? getKeyByValue(fontsJson,lineHeightEm) : undefined;
+            let fontWeight = getKeyByValue(fontsJson.data, style.style.fontWeight).includes('fontWeight') ? getKeyByValue(fontsJson.data,  style.style.fontWeight) : undefined
+            
+            let fontSize = getKeyByValue(fontsJson.data, style.style.fontSize + 'px').includes('fontSize') ? getKeyByValue(fontsJson.data,  style.style.fontSize + 'px') : undefined
 
-            let letterSpacing = getKeyByValue(fontsJson, style.style.letterSpacing).includes('fontLetterSpacing') ? getKeyByValue(fontsJson, style.style.letterSpacing) : undefined;
+            console.log('getting line height', style.style.lineHeightPx)
+
+            if(style.style.lineHeightPx % 4 != 0){
+                errors.push(`${token}: line height is not a multiple of 4`)
+            }
+
+            let lineHeightEm = (Array.from(lineHeightsEm) as number[]).find(lh => {
+                return Math.round((lh*style.style.fontSize)/GRID_SIZE) * GRID_SIZE == style.style.lineHeightPx
+            })
+  
+            let lineHeight = getKeyByValue(fontsJson.data, lineHeightEm) ? getKeyByValue(fontsJson.data, lineHeightEm) : undefined;
+
+            let letterSpacing = getKeyByValue(fontsJson.data,  style.style.letterSpacing).includes('fontLetterSpacing') ? getKeyByValue(fontsJson.data,  style.style.letterSpacing) : undefined;
             
 
                 if(!familyObj){
@@ -210,7 +222,7 @@ export default async function(){
                 obj[token] = {
                 "fontFamily": `{{fonts.${familyObj}.fontFamily}}`,
                 "fontWeight": `{{fonts.${fontWeight}}}`,
-                "fontSize": `{{fonts.${getKeyByValue(fontsJson, style.style.fontSize + 'px')}}}`,
+                "fontSize": `{{fonts.${fontSize}}}`,
                 "lineHeight": `{{fonts.${lineHeight}}}`,
                 "letterSpacing": `{{fonts.${letterSpacing}}}`,
             }
@@ -249,7 +261,7 @@ function lineHeightPxToEm(lineHeight,fontSize,currentSet){
             returnValue = (Math.round((lineHeight) / gridSize) * gridSize) / fontSizePx
         }
       
-        return Number.parseFloat(returnValue).toPrecision(3)
+        return Number.parseFloat(Number.parseFloat(returnValue).toPrecision(3))
           
         
 }
