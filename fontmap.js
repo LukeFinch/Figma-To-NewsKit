@@ -11,13 +11,12 @@ var config = {
   url: 'https://www.figma.com/api/fonts',
   headers: { 
     'authority': 'www.figma.com', 
-    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Figma/93.4.0 Chrome/85.0.4183.121 Electron/10.2.0 Safari/537.36', 
     'content-type': 'text/plain', 
     'accept': '*/*', 
     'sec-fetch-site': 'same-origin', 
     'sec-fetch-mode': 'cors', 
     'sec-fetch-dest': 'empty', 
-    'referer': 'https://www.figma.com/files/885972051699405879/fonts', 
+    'referer': `https://www.figma.com/files/${process.env.orgID}/fonts`, 
     'accept-language': 'en-US', 
     'cookie': cookie
   }
