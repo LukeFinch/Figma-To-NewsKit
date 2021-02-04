@@ -11,17 +11,24 @@ import {
     fileKey,
     allChildren,
     getKeyByValue,
-} from './utils'
+} from '../utils'
+
+
+const fontMap = require('../data/fontmap.json')
+//Figma doesn't give us all the data we need for fonts at the file level, we build a map from data in the org.
+//Add cookies data to the .env file and run `node fontmap.js` to get everything you need.
+//This needs to be regenerated every time new fonts are added to the organisation.
+
+
+//Map the font-stretch property to css values
+const fontStretch: Array<string> = ['ultra-condensed','extra-condensed','condensed','semi-condensed','normal','semi-expanded','expanded','extra-expanded','ultra-expanded']
 
 export default async function(){
     //var API_Doc = API_Doc ? API_Doc : await fetchApiDoc() // Fetch once we hope
     const getTypographyNodes = async() => {
     
-        const typographyPage = figma.root.findChild(n => n.name.toLowerCase().includes('typography')).id
-    
-        //var typographyPage = pages.find(p => p.name.includes('Typography')) ? pages.find(p => p.name.includes('Typography')).id : figma.notify('Could not find a typography page');
-    
         //This is a rather strict way of getting what we want.. if the structure changes this will break
+        const typographyPage = figma.root.findChild(n => n.name.toLowerCase().includes('typography')).id    
         var pageNodes = (await figmaFetch(`https://api.figma.com/v1/files/${fileKey}?ids=${typographyPage}`) as any).document.children.find(p => p.id == typographyPage)
     
         var styledNodes = []
@@ -117,8 +124,12 @@ export default async function(){
             //     (style: any ) => {
             //          return JSON.parse(style[1])
             //     });
-            
-            let cropArray = [];
+
+            let cropArray = textStyles.map(style => {
+                return JSON.parse(figma.root.getSharedPluginData('TextCrop', style.name))
+            });
+            console.log(cropArray);
+            //let cropArray = [];
         
             [...new Set((typographyNodes as unknown as Array < any > )
                 .map(style => style.style.fontPostScriptName as string))]
@@ -130,14 +141,14 @@ export default async function(){
                                 top:    0,
                                 bottom: 0,
                             }        
-                            let crops = cropArray.filter(n => {
+                            let crops = cropArray.filter((n: any) => {
                                 return (n.fontName.family + '-' + n.fontName.style).replace(/\s/g,'') == value.replace(/\s/g,'')
                             }).sort((a:any,b:any) => {
                                 return a.fontSize - b.fontSize
                             })
                        
                             let adjustments = {}
-                            crops.forEach(crop => {
+                            crops.forEach((crop: any) => {
                                  const sizeToken = getKeyByValue(fontSizes,crop.fontSize +'px')
                                 // console.log(sizeToken,crop.fontSize,crop.before,crop.after)
                                 adjustments[`{{fonts.${sizeToken}}}`] = {
@@ -187,7 +198,7 @@ export default async function(){
             
             let fontSize = getKeyByValue(fontsJson.data, style.style.fontSize + 'px').includes('fontSize') ? getKeyByValue(fontsJson.data,  style.style.fontSize + 'px') : undefined
 
-            console.log('getting line height', style.style.lineHeightPx)
+            
 
             if(style.style.lineHeightPx % 4 != 0){
                 errors.push(`${token}: line height is not a multiple of 4`)
@@ -201,6 +212,10 @@ export default async function(){
 
             let letterSpacing = getKeyByValue(fontsJson.data,  style.style.letterSpacing).includes('fontLetterSpacing') ? getKeyByValue(fontsJson.data,  style.style.letterSpacing) : undefined;
             
+            
+
+            let stretch = fontStretch[fontMap[style.style.fontPostScriptName].stretch - 1]
+            let isItalic = fontMap[style.style.fontPostScriptName].italic
 
                 if(!familyObj){
                     errors.push(`${token}: Couldn't find font family`)
@@ -225,6 +240,8 @@ export default async function(){
                 "fontSize": `{{fonts.${fontSize}}}`,
                 "lineHeight": `{{fonts.${lineHeight}}}`,
                 "letterSpacing": `{{fonts.${letterSpacing}}}`,
+                "fontStretch": `${stretch}`,
+                "italic": `${isItalic}`
             }
             
         })
@@ -266,3 +283,6 @@ function lineHeightPxToEm(lineHeight,fontSize,currentSet){
         
 }
 
+function fontFaceCSS(){
+    
+}

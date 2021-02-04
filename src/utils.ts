@@ -37,7 +37,7 @@ export const fetch = async function (url: string, options: object) {
 }
 
 export const figmaFetch = async function(url){
-    return await fetch(url,{'headers': {'X-Figma-Token':secrets.FIGMA_API}})
+    return await fetch(url,{'headers': {'X-Figma-Token':await figma.clientStorage.getAsync('APIKEY')}})
 }
 
 export const fetchTextStyles = async function (url: string, options: object) {
@@ -63,7 +63,7 @@ export const fetchTextStyles = async function (url: string, options: object) {
 }
 
 export const APIStyles =  async function () {
-    const styles = await fetchTextStyles(`https://api.figma.com/v1/files/${fileKey}/styles`,{'headers': {'X-Figma-Token':secrets.FIGMA_API}})
+    const styles = await fetchTextStyles(`https://api.figma.com/v1/files/${fileKey}/styles`,{'headers': {'X-Figma-Token':await figma.clientStorage.getAsync('APIKEY')}})
     return styles
 }
 

@@ -1,4 +1,4 @@
-import { parseGradient, getKeyByValue } from "./utils"
+import { parseGradient, getKeyByValue } from "../utils"
 
 const namesRGB = ['r', 'g', 'b']
 

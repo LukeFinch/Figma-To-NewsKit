@@ -1,8 +1,10 @@
 <template>
 <ul class="disclosure"> 
   <li class="disclosure__item" v-bind:class="{ 'disclosure--expanded': expanded}" >
-    <div class="disclosure__label" v-bind:class="{'disclosure--section': section }">{{heading}}</div> 
-    <div class="disclosure__content"><slot /></div>
+    <div class="disclosure__label" v-bind:class="{'disclosure--section': section }"><slot name="heading">
+      {{heading}}
+      </slot></div> 
+    <div class="disclosure__content"><slot name="content" /></div>
   </li>
 
 

@@ -1,0 +1,1031 @@
+{
+    "InterUI-Bold": {
+        "family": "Inter UI",
+        "style": "Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "InterUI-Italic": {
+        "family": "Inter UI",
+        "style": "Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 5
+    },
+    "InterUI-BoldItalic": {
+        "family": "Inter UI",
+        "style": "Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 5
+    },
+    "InterUI-MediumItalic": {
+        "family": "Inter UI",
+        "style": "Medium Italic",
+        "weight": 500,
+        "italic": true,
+        "stretch": 5
+    },
+    "InterUI-BlackItalic": {
+        "family": "Inter UI",
+        "style": "Black Italic",
+        "weight": 900,
+        "italic": true,
+        "stretch": 5
+    },
+    "InterUI-Medium": {
+        "family": "Inter UI",
+        "style": "Medium",
+        "weight": 500,
+        "italic": false,
+        "stretch": 5
+    },
+    "InterUI-Black": {
+        "family": "Inter UI",
+        "style": "Black",
+        "weight": 900,
+        "italic": false,
+        "stretch": 5
+    },
+    "InterUI-Regular": {
+        "family": "Inter UI",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesDigitalW04-RegularSC": {
+        "family": "Times Digital W04 Regular SC",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesDigitalW04-Regular": {
+        "family": "Times Digital W04 Regular",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesDigitalW04-BoldSC": {
+        "family": "Times Digital W04 Bold SC",
+        "style": "Regular",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesDigitalW04-Italic": {
+        "family": "Times Digital W04 Italic",
+        "style": "Regular",
+        "weight": 400,
+        "italic": true,
+        "stretch": 5
+    },
+    "TimesDigitalW04-BoldItalic": {
+        "family": "Times Digital W04 Bold Italic",
+        "style": "Regular",
+        "weight": 700,
+        "italic": true,
+        "stretch": 5
+    },
+    "GillSansMTStd-BoldItalic": {
+        "family": "Gill Sans MT Std",
+        "style": "Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 5
+    },
+    "GillSansMTStd-BookItalic": {
+        "family": "Gill Sans MT Std",
+        "style": "Book Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 5
+    },
+    "GillSansMTStd-Bold": {
+        "family": "Gill Sans MT Std",
+        "style": "Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "GillSansMTStd-UltraBoldCond": {
+        "family": "Gill Sans MT Std UltraBold Cond",
+        "style": "Regular",
+        "weight": 900,
+        "italic": false,
+        "stretch": 5
+    },
+    "GillSansMTStd-ExtraBold": {
+        "family": "Gill Sans MT Std ExraBold",
+        "style": "Regular",
+        "weight": 800,
+        "italic": false,
+        "stretch": 5
+    },
+    "GillSansMTStd-Condensed": {
+        "family": "Gill Sans MT Std Condensed",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 3
+    },
+    "GillSansMTStd-HeavyItalic": {
+        "family": "Gill Sans MT Std",
+        "style": "Heavy Italic",
+        "weight": 900,
+        "italic": true,
+        "stretch": 5
+    },
+    "GillSansMTStd-LightItalic": {
+        "family": "Gill Sans MT Std",
+        "style": "Light Italic",
+        "weight": 300,
+        "italic": true,
+        "stretch": 5
+    },
+    "GillSansMTStd-Book": {
+        "family": "Gill Sans MT Std",
+        "style": "Book",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "GillSansMTStd-MediumItalic": {
+        "family": "Gill Sans MT Std",
+        "style": "Medium Italic",
+        "weight": 500,
+        "italic": true,
+        "stretch": 5
+    },
+    "GillSansMTStd-Heavy": {
+        "family": "Gill Sans MT Std",
+        "style": "Heavy",
+        "weight": 900,
+        "italic": false,
+        "stretch": 5
+    },
+    "GillSansMTStd-BoldCondensed": {
+        "family": "Gill Sans MT Std Condensed",
+        "style": "Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 3
+    },
+    "GillSansMTStd-Light": {
+        "family": "Gill Sans MT Std",
+        "style": "Light",
+        "weight": 300,
+        "italic": false,
+        "stretch": 5
+    },
+    "GillSansMTStd-UltraBold": {
+        "family": "Gill Sans MT Std UltraBold",
+        "style": "Regular",
+        "weight": 900,
+        "italic": false,
+        "stretch": 5
+    },
+    "TheSun-HeavyCondensed": {
+        "family": "The Sun",
+        "style": "Heavy Condensed",
+        "weight": 800,
+        "italic": false,
+        "stretch": 3
+    },
+    "TheSun-BoldItalic": {
+        "family": "The Sun",
+        "style": "Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 5
+    },
+    "TheSunSlab-Medium": {
+        "family": "The Sun Slab",
+        "style": "Medium",
+        "weight": 500,
+        "italic": false,
+        "stretch": 5
+    },
+    "TheSunSlab-Italic": {
+        "family": "The Sun Slab",
+        "style": "Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 5
+    },
+    "TheSun-Italic": {
+        "family": "The Sun",
+        "style": "Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 5
+    },
+    "TheSunSlab-Bold": {
+        "family": "The Sun Slab",
+        "style": "Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "TheSunSlab-Regular": {
+        "family": "The Sun Slab",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "TheSun-MediumItalic": {
+        "family": "The Sun",
+        "style": "Medium Italic",
+        "weight": 500,
+        "italic": true,
+        "stretch": 5
+    },
+    "TheSunSlab-BoldItalic": {
+        "family": "The Sun Slab",
+        "style": "Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 5
+    },
+    "TheSunSlab-MediumItalic": {
+        "family": "The Sun Slab",
+        "style": "Medium Italic",
+        "weight": 500,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSerif-Italic": {
+        "family": "Noto Serif",
+        "style": "Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-Bold": {
+        "family": "Noto Sans",
+        "style": "Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSerif": {
+        "family": "Noto Serif",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSans-BlackItalic": {
+        "family": "Noto Sans",
+        "style": "Black Italic",
+        "weight": 900,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-Condensed": {
+        "family": "Noto Sans",
+        "style": "Condensed",
+        "weight": 400,
+        "italic": false,
+        "stretch": 3
+    },
+    "NotoSans-CondensedBlack": {
+        "family": "Noto Sans",
+        "style": "Condensed Black",
+        "weight": 900,
+        "italic": false,
+        "stretch": 3
+    },
+    "NotoSans-ExtraCondensedBold": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 2
+    },
+    "NotoSans-ExtraCondensedExtraBold": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed ExtraBold",
+        "weight": 800,
+        "italic": false,
+        "stretch": 2
+    },
+    "NotoSans-CondensedLight": {
+        "family": "Noto Sans",
+        "style": "Condensed Light",
+        "weight": 300,
+        "italic": false,
+        "stretch": 3
+    },
+    "NotoSans-ExtraCondensed": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed",
+        "weight": 400,
+        "italic": false,
+        "stretch": 2
+    },
+    "NotoSans-CondensedExtraLight": {
+        "family": "Noto Sans",
+        "style": "Condensed ExtraLight",
+        "weight": 200,
+        "italic": false,
+        "stretch": 3
+    },
+    "NotoSans-CondensedMedium": {
+        "family": "Noto Sans",
+        "style": "Condensed Medium",
+        "weight": 500,
+        "italic": false,
+        "stretch": 3
+    },
+    "NotoSans-CondensedBlackItalic": {
+        "family": "Noto Sans",
+        "style": "Condensed Black Italic",
+        "weight": 900,
+        "italic": true,
+        "stretch": 3
+    },
+    "NotoSans-ExtraCondensedLight": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Light",
+        "weight": 300,
+        "italic": false,
+        "stretch": 2
+    },
+    "NotoSans-MediumItalic": {
+        "family": "Noto Sans",
+        "style": "Medium Italic",
+        "weight": 500,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-ThinItalic": {
+        "family": "Noto Sans",
+        "style": "Thin Italic",
+        "weight": 100,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-ExtraCondensedThinItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Thin Italic",
+        "weight": 100,
+        "italic": true,
+        "stretch": 2
+    },
+    "NotoSans-CondensedThinItalic": {
+        "family": "Noto Sans",
+        "style": "Condensed Thin Italic",
+        "weight": 100,
+        "italic": true,
+        "stretch": 3
+    },
+    "NotoSans-SemiCondensedExtraBoldItalic": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed ExtraBold Italic",
+        "weight": 800,
+        "italic": true,
+        "stretch": 4
+    },
+    "NotoSans-SemiCondensedBoldItalic": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 4
+    },
+    "NotoSans-SemiCondensedMediumItalic": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Medium Italic",
+        "weight": 500,
+        "italic": true,
+        "stretch": 4
+    },
+    "NotoSans-ExtraCondensedExtraLightItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed ExtraLight Italic",
+        "weight": 200,
+        "italic": true,
+        "stretch": 2
+    },
+    "NotoSans-Medium": {
+        "family": "Noto Sans",
+        "style": "Medium",
+        "weight": 500,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSans-CondensedItalic": {
+        "family": "Noto Sans",
+        "style": "Condensed Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 3
+    },
+    "NotoSans-LightItalic": {
+        "family": "Noto Sans",
+        "style": "Light Italic",
+        "weight": 300,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-SemiCondensedLight": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Light",
+        "weight": 300,
+        "italic": false,
+        "stretch": 4
+    },
+    "NotoSans-Black": {
+        "family": "Noto Sans",
+        "style": "Black",
+        "weight": 900,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSans-ExtraBoldItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraBold Italic",
+        "weight": 800,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-SemiCondensedBlackItalic": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Black Italic",
+        "weight": 900,
+        "italic": true,
+        "stretch": 4
+    },
+    "NotoSans-SemiBoldItalic": {
+        "family": "Noto Sans",
+        "style": "SemiBold Italic",
+        "weight": 600,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-ExtraCondensedSemiBoldItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed SemiBold Italic",
+        "weight": 600,
+        "italic": true,
+        "stretch": 2
+    },
+    "NotoSans-ExtraCondensedLightItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Light Italic",
+        "weight": 300,
+        "italic": true,
+        "stretch": 2
+    },
+    "NotoSans-SemiCondensedMedium": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Medium",
+        "weight": 500,
+        "italic": false,
+        "stretch": 4
+    },
+    "NotoSerif-BoldItalic": {
+        "family": "Noto Serif",
+        "style": "Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-SemiCondensedThinItalic": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Thin Italic",
+        "weight": 100,
+        "italic": true,
+        "stretch": 4
+    },
+    "NotoSans-ExtraCondensedItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 2
+    },
+    "NotoSerif-Bold": {
+        "family": "Noto Serif",
+        "style": "Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSans-SemiCondensedExtraLightItalic": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed ExtraLight Italic",
+        "weight": 200,
+        "italic": true,
+        "stretch": 4
+    },
+    "NotoSans-CondensedBold": {
+        "family": "Noto Sans",
+        "style": "Condensed Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 3
+    },
+    "NotoSans-ExtraCondensedSemiBold": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed SemiBold",
+        "weight": 600,
+        "italic": false,
+        "stretch": 2
+    },
+    "NotoSans-SemiCondensedSemiBoldItalic": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed SemiBold Italic",
+        "weight": 600,
+        "italic": true,
+        "stretch": 4
+    },
+    "NotoSans-ExtraCondensedThin": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Thin",
+        "weight": 100,
+        "italic": false,
+        "stretch": 2
+    },
+    "NotoSans-ExtraLight": {
+        "family": "Noto Sans",
+        "style": "ExtraLight",
+        "weight": 200,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSans-CondensedThin": {
+        "family": "Noto Sans",
+        "style": "Condensed Thin",
+        "weight": 100,
+        "italic": false,
+        "stretch": 3
+    },
+    "NotoSans-CondensedSemiBoldItalic": {
+        "family": "Noto Sans",
+        "style": "Condensed SemiBold Italic",
+        "weight": 600,
+        "italic": true,
+        "stretch": 3
+    },
+    "NotoSans-CondensedExtraBoldItalic": {
+        "family": "Noto Sans",
+        "style": "Condensed ExtraBold Italic",
+        "weight": 800,
+        "italic": true,
+        "stretch": 3
+    },
+    "NotoSans-SemiCondensedBold": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 4
+    },
+    "NotoSans-SemiCondensedItalic": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 4
+    },
+    "NotoSans-SemiCondensedLightItalic": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Light Italic",
+        "weight": 300,
+        "italic": true,
+        "stretch": 4
+    },
+    "NotoSans-SemiCondensedThin": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Thin",
+        "weight": 100,
+        "italic": false,
+        "stretch": 4
+    },
+    "NotoSans-SemiCondensedExtraLight": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed ExtraLight",
+        "weight": 200,
+        "italic": false,
+        "stretch": 4
+    },
+    "NotoSans-ExtraCondensedMediumItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Medium Italic",
+        "weight": 500,
+        "italic": true,
+        "stretch": 2
+    },
+    "NotoSans-ExtraCondensedBoldItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 2
+    },
+    "NotoSans-SemiCondensedExtraBold": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed ExtraBold",
+        "weight": 800,
+        "italic": false,
+        "stretch": 4
+    },
+    "NotoSans-CondensedMediumItalic": {
+        "family": "Noto Sans",
+        "style": "Condensed Medium Italic",
+        "weight": 500,
+        "italic": true,
+        "stretch": 3
+    },
+    "NotoSans-ExtraCondensedExtraBoldItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed ExtraBold Italic",
+        "weight": 800,
+        "italic": true,
+        "stretch": 2
+    },
+    "NotoSans-Italic": {
+        "family": "Noto Sans",
+        "style": "Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-Light": {
+        "family": "Noto Sans",
+        "style": "Light",
+        "weight": 300,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSans-SemiCondensedBlack": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed Black",
+        "weight": 900,
+        "italic": false,
+        "stretch": 4
+    },
+    "NotoSans-ExtraCondensedExtraLight": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed ExtraLight",
+        "weight": 200,
+        "italic": false,
+        "stretch": 2
+    },
+    "NotoSans-CondensedExtraBold": {
+        "family": "Noto Sans",
+        "style": "Condensed ExtraBold",
+        "weight": 800,
+        "italic": false,
+        "stretch": 3
+    },
+    "NotoSans-Regular": {
+        "family": "Noto Sans",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSans-CondensedSemiBold": {
+        "family": "Noto Sans",
+        "style": "Condensed SemiBold",
+        "weight": 600,
+        "italic": false,
+        "stretch": 3
+    },
+    "NotoSans-SemiBold": {
+        "family": "Noto Sans",
+        "style": "SemiBold",
+        "weight": 600,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSans-ExtraCondensedBlack": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Black",
+        "weight": 900,
+        "italic": false,
+        "stretch": 2
+    },
+    "NotoSans-Thin": {
+        "family": "Noto Sans",
+        "style": "Thin",
+        "weight": 100,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSans-BoldItalic": {
+        "family": "Noto Sans",
+        "style": "Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-CondensedBoldItalic": {
+        "family": "Noto Sans",
+        "style": "Condensed Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 3
+    },
+    "NotoSans-SemiCondensed": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed",
+        "weight": 400,
+        "italic": false,
+        "stretch": 4
+    },
+    "NotoSans-ExtraBold": {
+        "family": "Noto Sans",
+        "style": "ExtraBold",
+        "weight": 800,
+        "italic": false,
+        "stretch": 5
+    },
+    "NotoSans-SemiCondensedSemiBold": {
+        "family": "Noto Sans",
+        "style": "SemiCondensed SemiBold",
+        "weight": 600,
+        "italic": false,
+        "stretch": 4
+    },
+    "NotoSans-ExtraLightItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraLight Italic",
+        "weight": 200,
+        "italic": true,
+        "stretch": 5
+    },
+    "NotoSans-CondensedExtraLightItalic": {
+        "family": "Noto Sans",
+        "style": "Condensed ExtraLight Italic",
+        "weight": 200,
+        "italic": true,
+        "stretch": 3
+    },
+    "NotoSans-ExtraCondensedMedium": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Medium",
+        "weight": 500,
+        "italic": false,
+        "stretch": 2
+    },
+    "NotoSans-CondensedLightItalic": {
+        "family": "Noto Sans",
+        "style": "Condensed Light Italic",
+        "weight": 300,
+        "italic": true,
+        "stretch": 3
+    },
+    "NotoSans-ExtraCondensedBlackItalic": {
+        "family": "Noto Sans",
+        "style": "ExtraCondensed Black Italic",
+        "weight": 900,
+        "italic": true,
+        "stretch": 2
+    },
+    "Inter-Black": {
+        "family": "Inter",
+        "style": "Black",
+        "weight": 900,
+        "italic": false,
+        "stretch": 5
+    },
+    "Inter-Bold": {
+        "family": "Inter",
+        "style": "Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "Inter-Light": {
+        "family": "Inter",
+        "style": "Light",
+        "weight": 300,
+        "italic": false,
+        "stretch": 5
+    },
+    "Inter-Thin": {
+        "family": "Inter",
+        "style": "Thin",
+        "weight": 250,
+        "italic": false,
+        "stretch": 5
+    },
+    "Inter-Medium": {
+        "family": "Inter",
+        "style": "Medium",
+        "weight": 500,
+        "italic": false,
+        "stretch": 5
+    },
+    "Inter-Regular": {
+        "family": "Inter",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "Inter-ExtraLight": {
+        "family": "Inter",
+        "style": "ExtraLight",
+        "weight": 250,
+        "italic": false,
+        "stretch": 5
+    },
+    "Inter-ExtraBold": {
+        "family": "Inter",
+        "style": "ExtraBold",
+        "weight": 800,
+        "italic": false,
+        "stretch": 5
+    },
+    "Inter-SemiBold": {
+        "family": "Inter",
+        "style": "SemiBold",
+        "weight": 600,
+        "italic": false,
+        "stretch": 5
+    },
+    "BLOKK": {
+        "family": "BLOKK",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "BLOKKNeue-Regular": {
+        "family": "BLOKK Neue",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesModern-Bold": {
+        "family": "Times Modern",
+        "style": "Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesModern-BoldItalic": {
+        "family": "Times Modern",
+        "style": "Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 5
+    },
+    "TimesModern-Italic": {
+        "family": "Times Modern",
+        "style": "Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 5
+    },
+    "TimesModern-ExpLight": {
+        "family": "Times Modern",
+        "style": "Exp Light",
+        "weight": 300,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesModern-ExtraBoldIt": {
+        "family": "Times Modern",
+        "style": "ExtraBold Italic",
+        "weight": 800,
+        "italic": true,
+        "stretch": 5
+    },
+    "TimesModern-UltraLight": {
+        "family": "Times Modern",
+        "style": "Ultra Light",
+        "weight": 250,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesModern-Light": {
+        "family": "Times Modern",
+        "style": "Light",
+        "weight": 300,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesModern-SF": {
+        "family": "Times Modern",
+        "style": "SF",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesModern-ExtraBold": {
+        "family": "Times Modern",
+        "style": "ExtraBold",
+        "weight": 800,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesModern-Regular": {
+        "family": "Times Modern",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "TimesModern-LightItalic": {
+        "family": "Times Modern",
+        "style": "Light Italic",
+        "weight": 300,
+        "italic": true,
+        "stretch": 5
+    },
+    "TimesDigitalW04-Bold": {
+        "family": "Times Digital W04 Bold",
+        "style": "Regular",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "GillSansMTStd-Medium": {
+        "family": "Gill Sans MT Std",
+        "style": "Medium",
+        "weight": 500,
+        "italic": false,
+        "stretch": 5
+    },
+    "TheSun-Bold": {
+        "family": "The Sun",
+        "style": "Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "TheSun-Medium": {
+        "family": "The Sun",
+        "style": "Medium",
+        "weight": 500,
+        "italic": false,
+        "stretch": 5
+    },
+    "TheSun-Regular": {
+        "family": "The Sun",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "TheSun-HeavyNarrow": {
+        "family": "The Sun",
+        "style": "Heavy Narrow",
+        "weight": 800,
+        "italic": false,
+        "stretch": 4
+    },
+    "DMSans-Bold": {
+        "family": "DM Sans",
+        "style": "Bold",
+        "weight": 700,
+        "italic": false,
+        "stretch": 5
+    },
+    "DMSans-BoldItalic": {
+        "family": "DM Sans",
+        "style": "Bold Italic",
+        "weight": 700,
+        "italic": true,
+        "stretch": 5
+    },
+    "DMSans-Italic": {
+        "family": "DM Sans",
+        "style": "Italic",
+        "weight": 400,
+        "italic": true,
+        "stretch": 5
+    },
+    "DMSans-MediumItalic": {
+        "family": "DM Sans",
+        "style": "Medium Italic",
+        "weight": 500,
+        "italic": true,
+        "stretch": 5
+    },
+    "DMSans-Regular": {
+        "family": "DM Sans",
+        "style": "Regular",
+        "weight": 400,
+        "italic": false,
+        "stretch": 5
+    },
+    "DMSans-Medium": {
+        "family": "DM Sans",
+        "style": "Medium",
+        "weight": 500,
+        "italic": false,
+        "stretch": 5
+    }
+}

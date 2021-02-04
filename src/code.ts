@@ -1,6 +1,8 @@
 import { handleEvent, dispatch } from './codeMessageHandler'
 
-console.log(handleEvent)
+//lazy workaround for now..
+const secrets = require('../secrets.js').default
+figma.clientStorage.setAsync('APIKEY',secrets.FIGMA_API)
 
 figma.showUI(__html__, {
 	width: 400,
@@ -9,9 +11,9 @@ figma.showUI(__html__, {
 
 
 
-
-import getTextStyles from './textStyles';
-import getColors from './colors'
+import meta from './generators/meta'
+import getTextStyles from './generators/textStyles';
+import getColors from './generators/colors'
 
 
 handleEvent("resizeUI", (size) => {
@@ -25,8 +27,11 @@ console.log('ready')
 
 async function sendThemeToUI(){
 
+	console.log(await meta())
+
+	dispatch('metaJson',await meta())
 	const colors = getColors()
-	dispatch('colors',colors.colors)
+	dispatch('colorsJson',colors.colors)
 	
 	const textStyles = await getTextStyles()
 	

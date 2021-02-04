@@ -1,36 +1,69 @@
 <template>
 <div id="ui">
-<!-- <textarea v-if="colorsJson" class="textarea" v-model="colorsJson" :disabled=true rows=10></textarea> -->
-<Disclosure :expanded="false" :section="true" :heading="'colors.json'">
-<vue-json-pretty  v-if="colorsJson" :data="colorsJson" :deep="2" :virtual="true" style="height: 200px; width: 400px;"> </vue-json-pretty>
-<div v-else class="icon icon--spinner icon--spin"></div>
-</Disclosure>
-<Disclosure v-if="colorsErr.length > 0" :heading="`${colorsErr.length} Errors`">
-<ul>
-  <li v-for="(err, index) in colorsErr" :key="index">{{err}}</li>
-</ul>
-</Disclosure>
-<Disclosure :expanded="false" :section="true" :heading="'fonts.json'">
-<vue-json-pretty  v-if="fontsJson" :data="fontsJson" :deep="2" :virtual="true" style="height: 200px; width: 400px;"> </vue-json-pretty>
-<div v-else class="icon icon--spinner icon--spin"></div>
-</Disclosure>
-<Disclosure v-if="fontsErr.length > 0" :heading="`${fontsErr.length} Errors`">
-<ul>
-  <li v-for="(err, index) in fontsErr" :key="index">{{err}}</li>
-</ul>
-</Disclosure>
-<Disclosure :expanded="false" :section="true" :heading="'typographyPresets.json'">
-<vue-json-pretty  v-if="typographyJson" :data="typographyJson" :deep="2" :virtual="true" style="height: 200px; width: 400px;"> </vue-json-pretty>
-<div v-else class="icon icon--spinner icon--spin"></div>
-</Disclosure>
-<Disclosure v-if="typographyErr.length > 0" :heading="`${typographyErr.length} Errors`">
-<ul>
-  <li v-for="(err, index) in typographyErr" :key="index">{{err}}</li>
-</ul>
-</Disclosure>
+  <!-- <textarea v-if="colorsJson" class="textarea" v-model="colorsJson" :disabled=true rows=10></textarea> -->
+    <Disclosure :expanded="false" :section="true">
+    <template v-slot:heading>meta.json</template>
+    <template v-slot:content>
+      <vue-json-pretty v-if="metaJson" :data="metaJson" :deep="2" :virtual="true"
+        style="height: 200px; width: 400px;"></vue-json-pretty>
+      <div v-else class="icon icon--spinner icon--spin" />
+    </template>
+  </Disclosure>
+  <Disclosure :expanded="false" :section="true">
+    <template v-slot:heading>colors.json</template>
+    <template v-slot:content>
+      <vue-json-pretty v-if="colorsJson" :data="colorsJson" :deep="2" :virtual="true"
+        style="height: 200px; width: 400px;"></vue-json-pretty>
+      <div v-else class="icon icon--spinner icon--spin" />
+    </template>
+  </Disclosure>
+  <Disclosure v-if="colorsErr.length > 0">
+    <template v-slot:heading>
+      <div class="icon icon--noticeinfo icon--red"></div><div class="type type-bold type-red">{{colorsErr.length}} Errors</div>
+    </template>
+    <template v-slot:content>
+      <ul>
+        <li v-for="(err, index) in colorsErr" :key="index">{{err}}</li>
+      </ul>
+    </template>
+  </Disclosure>
+  <Disclosure :expanded="false" :section="true" :heading="'fonts.json'">
+    <template v-slot:content>
+    <vue-json-pretty v-if="fontsJson" :data="fontsJson" :deep="2" :virtual="true" style="height: 200px; width: 400px;">
+    </vue-json-pretty>
+    <div v-else class="icon icon--spinner icon--spin"></div>
+    </template> 
+  </Disclosure>
+  <Disclosure v-if="fontsErr.length > 0">
+    <template v-slot:heading>
+      <div class="icon icon--noticeinfo icon--red"></div><div class="type type-bold type-red">{{fontsErr.length}} Errors</div>
+    </template>
+    <template v-slot:content>
+      <ul>
+        <li v-for="(err, index) in fontsErr" :key="index">{{err}}</li>
+      </ul>
+    </template>
+  </Disclosure>
+  <Disclosure :expanded="false" :section="true" :heading="'typographyPresets.json'">
+    <template v-slot:content>
+    <vue-json-pretty v-if="typographyJson" :data="typographyJson" :deep="2" :virtual="true"
+      style="height: 200px; width: 400px;"> </vue-json-pretty>
+    <div v-else class="icon icon--spinner icon--spin"></div>
+    </template>
+  </Disclosure>
+  <Disclosure v-if="typographyErr.length > 0">
+      <template v-slot:heading>
+      <div class="icon icon--noticeinfo icon--red"></div><div class="type type-bold type-red">{{typographyErr.length}} Errors</div>
+    </template>
+    <template v-slot:content>
+      <ul>
+        <li v-for="(err, index) in typographyErr" :key="index">{{err}}</li>
+      </ul>
+    </template>
+  </Disclosure>
 
 
-<button class='button button--primary' :disabled="!allLoaded" @click="saveFiles">Save Files</button> 
+  <button class='button button--primary' :disabled="!allLoaded" @click="saveFiles">Save Files</button>
 </div>
 
 </template>
@@ -43,6 +76,7 @@ import Disclosure from './components/Disclosure.vue'
 //import 'vue-json-pretty/lib/styles.css';
 import './json-style.css'
 import 'figma-plugin-ds/dist/figma-plugin-ds.css'
+import '@lukefinch/figmaicons/dist/figmaicons.css'
 import {
   dispatch,
   handleEvent
@@ -59,7 +93,8 @@ export default {
     Disclosure
   },
   setup() {
-
+    
+  const metaJson = ref()
   const typographyJson = ref()
   const fontsJson = ref()
   const colorsJson = ref()
@@ -68,13 +103,14 @@ export default {
   const colorsErr = ref([])
 
   const allLoaded = computed(() => {
-    let val = typographyJson.value && fontsJson.value && colorsJson.value ? true : false
+    let val = typographyJson.value && fontsJson.value && colorsJson.value && metaJson.value ? true : false
     return val
   })
 
 
     function saveFiles(){
     const zip = new JSZip();
+    zip.file('meta.json', JSON.stringify(metaJson.value,null,2))
     zip.file('colors.json', JSON.stringify(colorsJson.value,null,2))
     zip.file('fonts.json', JSON.stringify(fontsJson.value,null,2))
     zip.file('typographyJson.json', JSON.stringify(typographyJson.value,null,2))
@@ -119,8 +155,7 @@ export default {
          dispatch('resizeUI', [app.scrollWidth, app.scrollHeight])
       });
       resizeObserver.observe(app)
-
-      
+    
 
 
 
@@ -148,9 +183,14 @@ export default {
             }
             )       
         })
-        
-      handleEvent("colors", data => {
        
+       handleEvent("metaJson",data => {
+         console.log('got meta json',data)
+         metaJson.value = data
+       });
+
+      handleEvent("colorsJson", data => {  
+        console.log('colorsJson', data.data)     
         colorsJson.value = data.data
         colorsErr.value = data.errors
       });
@@ -168,13 +208,13 @@ export default {
     })
 
     return {
+      metaJson,
       typographyJson,
       fontsJson,
       colorsJson,
       typographyErr,
       fontsErr,
       colorsErr,
-      
       allLoaded,
       saveFiles
     };
@@ -190,5 +230,13 @@ export default {
   align-items: center;
   justify-content: space-between;
   padding: var(--size-medium);
+}
+
+.icon{
+  background-position: 0 0;
+}
+
+.type-red{
+  color: var(--red)
 }
 </style>
