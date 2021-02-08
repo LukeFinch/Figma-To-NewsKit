@@ -37,11 +37,12 @@ const palettes = getPalettes()
 
 function getOverlays(){
     let obj = {}
-    paints.filter(p => p.name.startsWith('overlay')).map(p => {
+    let errors = []
+    paints.filter(p => p.name.toLowerCase().startsWith('overlay')).map(p => {
         const style = getCSSForPaint(p)
         obj[style.name] = style.color
     })
-    return obj
+    return {data: obj, errors: errors}
 }
 
 function getThemedColors(){

@@ -16,6 +16,7 @@ import { onMounted } from 'vue'
 
 
 export default {
+  name: "Disclosure",
   props: {
         heading: String,
         expanded: Boolean,

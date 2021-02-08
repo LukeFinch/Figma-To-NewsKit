@@ -27,11 +27,11 @@ console.log('ready')
 
 async function sendThemeToUI(){
 
-	console.log(await meta())
-
 	dispatch('metaJson',await meta())
-	const colors = getColors()
+	const colors = await getColors()
 	dispatch('colorsJson',colors.colors)
+	console.log(colors.overlays)
+	dispatch('overlaysJson',colors.overlays)
 	
 	const textStyles = await getTextStyles()
 	
