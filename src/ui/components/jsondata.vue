@@ -22,19 +22,34 @@
 <script>
 import Disclosure from './Disclosure.vue'
 import VueJsonPretty from 'vue-json-pretty'
+import {onMounted, ref, watchEffect} from 'vue'
+
+
+
+// const jsonData = ref({})
+// const errors = ref([])
+
 export default {
     props: {
         title: String,
         jsonData: Object,
-        errors: Array
+        errors: Array,
     },    
-    components: {
+    components: { 
          Disclosure,
          VueJsonPretty
     },
-    setup(props){
-
+    setup(props, ){
+      onMounted(() => {
+ 
+      })
+  
+      return{
+        props,
+    
+      }
     }
+    
 }
 </script>
 

@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "webpack --mode=development --watch",
 		"build": "webpack --mode=production",
+		"preview": "live-server --entry-file='livepreview.html'",
 		"fontmap": "node fontMap.js"
 	},
 	"dependencies": {
@@ -16,7 +17,10 @@
 		"figma-plugin-ds": "^0.1.8",
 		"fs": "0.0.1-security",
 		"jszip": "^3.5.0",
+		"lodash.merge": "^4.6.2",
 		"matrix-inverse": "^2.0.0",
+		"pinia": "^2.0.0-alpha.7",
+		"vee-validate": "^4.1.16",
 		"vue-json-pretty": "^2.0.2",
 		"vue-router": "^4.0.3"
 	},

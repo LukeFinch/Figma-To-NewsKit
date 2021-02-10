@@ -1,3 +1,6 @@
+import {useStore } from './store/store'
+
+
 //Split camelCase into words[]
 function splitWords(s) {
     var re, match, output = [];
