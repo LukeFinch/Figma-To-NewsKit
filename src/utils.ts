@@ -37,7 +37,7 @@ export const fetch = async function (url: string, options: object) {
 }
 
 export const figmaFetch = async function(url){
-    return await fetch(url,{'headers': {'X-Figma-Token':await figma.clientStorage.getAsync('APIKEY')}})
+    return await fetch(url,{'headers': {'X-Figma-Token':await figma.clientStorage.getAsync('figmaKey')}})
 }
 
 export const fetchTextStyles = async function (url: string, options: object) {
@@ -141,7 +141,7 @@ export function parseGradient(p: GradientPaint) {
       // let colorToken = colorPalette.getKeyByValue(`${MSColorToRGBA(stop.color())}`)
       // str.push(` ${colorToken} ${(stop.position().toFixed(4)*100)}%`)
   
-      str.push(`${rgbaString(stop.color)} ${((stop.position)*100).toFixed(4)}%`)
+      str.push(`${rgbaString(stop.color)} ${((stop.position)*100).toFixed(2).replace(/\.00$/, '')}%`)
   
   
     })
@@ -157,5 +157,5 @@ export function parseGradient(p: GradientPaint) {
   }
 
   export function rgbaString(color: RGBA){
-    return `rgba(${color.r * 255},${color.g * 255},${color.b * 255},${color.a})` as string
+    return `rgba(${Math.round(color.r * 255)},${Math.round(color.g * 255)},${Math.round(color.b * 255)},${color.a})` as string
 }

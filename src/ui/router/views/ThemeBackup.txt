@@ -1,0 +1,12 @@
+  <!--
+
+  <json-data title="Theme"        :jsonData="theme.getMeta.data"       :errors="theme.getMeta.errors"   />
+  <json-data title="Colors"       :jsonData="theme.getColors.data"     :errors="theme.getColors.errors"  />
+  <json-data title="Overlays"     :jsonData="theme.getOverlays.data"   :errors="theme.getOverlays.errors"  />
+  <json-data title="Fonts"        :jsonData="theme.getFonts.data"      :errors="theme.getFonts.errors"   />
+  <json-data title="Typography"   :jsonData="theme.getTypography.data" :errors="theme.getTypography.errors"  />
+
+
+
+  <button class='button button--primary' :disabled="!allLoaded" @click="saveFiles">Save Files</button>
+  <button class='button button--secondary' :disabled="!allLoaded" @click="gitExport">Git Export</button> -->

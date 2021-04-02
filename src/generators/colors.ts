@@ -1,5 +1,5 @@
 import { parseGradient, getKeyByValue } from "../utils"
-var merge = require('lodash.merge')
+// var merge = require('lodash.merge')
 
 const namesRGB = ['r', 'g', 'b']
 
@@ -55,8 +55,10 @@ function getThemedColors(){
         let name = style.name.split('/')[style.name.split('/').length -1].trim()
         if(!token){
             errors.push(`${name}: couldn't find palette to match`)
+            obj[name] = undefined
+        } else {
+            obj[name] = `{{colors.${token}}}`
         }
-        obj[name] = `{{colors.${token}}}`
     })
     return {data: obj, errors: errors}
 }
@@ -65,6 +67,28 @@ export default function(){
     interface ThemeItem {
         data: JSON
         errors: Array<string>
+    }
+
+    function merge(obj1,obj2){
+        // Create a new object
+var extended = {};
+
+// Loop through obj1
+for (var prop1 in obj1) {
+	if (obj1.hasOwnProperty(prop1)) {
+		// Push each value from `obj1` into `extended`
+		extended[prop1] = obj1[prop1];
+	}
+}
+
+// Loop through obj2
+for (var prop2 in obj2) {
+	if (obj2.hasOwnProperty(prop2)) {
+		// Push each value from `obj2` into `extended`
+		extended[prop2] = obj2[prop2];
+	}
+}
+return extended
     }
 
     const colorData = merge(getPalettes(),getThemedColors().data);

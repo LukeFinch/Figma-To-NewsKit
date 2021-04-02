@@ -125,11 +125,11 @@ export default async function(){
             //          return JSON.parse(style[1])
             //     });
 
-            let cropArray = textStyles.map(style => {
-                return JSON.parse(figma.root.getSharedPluginData('TextCrop', style.name))
-            });
-            console.log(cropArray);
-            //let cropArray = [];
+            // let cropArray = textStyles.map(style => {
+            //     return JSON.parse(figma.root.getSharedPluginData('TextCrop', style.name))
+            // });
+            // console.log(cropArray);
+            let cropArray = [];
         
             [...new Set((typographyNodes as unknown as Array < any > )
                 .map(style => style.style.fontPostScriptName as string))]
@@ -183,9 +183,10 @@ export default async function(){
        
     async function getTypographyPresets(){
            let obj = {}       
-           let errors = [] 
+           let errors = []
+           let warnings = [] 
             console.log(fontsJson.data)
-        typographyNodes.forEach(style =>{
+            typographyNodes.forEach(style =>{
             const token = style.name.split('/')[style.name.split('/').length-1]
             
                
@@ -193,10 +194,21 @@ export default async function(){
             //Eww this is gross
             let familyObj = getKeyByValue(fontsJson.data, Object.values(fontsJson.data).find((item: any) => item.fontFamily === `${style.style.fontPostScriptName}`))
             
+            let fontWeight
+            let fontWeightKey = getKeyByValue(fontsJson.data, style.style.fontWeight)
+            if(fontWeightKey){
+                fontWeight = fontWeightKey.includes('fontWeight') ? fontWeightKey : undefined
+            } else {
+                errors.push(`${style.style.fontWeight} missing from fontJson. Ensure styles on the typography page are accurate`)
+            }
+            let fontSize
+            let fontSizeKey = getKeyByValue(fontsJson.data, style.style.fontSize + 'px')
+            if(fontSizeKey){
+                fontSize = getKeyByValue(fontsJson.data,  style.style.fontSize + 'px')
+            } else {
+                errors.push(`font size: ${style.style.fontSize} px missing from fontJson. Ensure styles on the typography page are accurate`)
 
-            let fontWeight = getKeyByValue(fontsJson.data, style.style.fontWeight).includes('fontWeight') ? getKeyByValue(fontsJson.data,  style.style.fontWeight) : undefined
-            
-            let fontSize = getKeyByValue(fontsJson.data, style.style.fontSize + 'px').includes('fontSize') ? getKeyByValue(fontsJson.data,  style.style.fontSize + 'px') : undefined
+            }
 
             
 
@@ -212,10 +224,19 @@ export default async function(){
 
             let letterSpacing = getKeyByValue(fontsJson.data,  style.style.letterSpacing).includes('fontLetterSpacing') ? getKeyByValue(fontsJson.data,  style.style.letterSpacing) : undefined;
             
-            
+            let stretch = null
+            let isItalic = null
 
-            let stretch = fontStretch[fontMap[style.style.fontPostScriptName].stretch - 1]
-            let isItalic = fontMap[style.style.fontPostScriptName].italic
+            try{
+                stretch = fontStretch[fontMap[style.style.fontPostScriptName].stretch - 1]
+                isItalic = fontMap[style.style.fontPostScriptName].italic
+            } catch( e ) {
+                console.log('no map for style:',style)
+                errors.push(`Fontmap missing for font: ${style.style.fontPostScriptName}`)
+            }
+
+             
+            
 
                 if(!familyObj){
                     errors.push(`${token}: Couldn't find font family`)
@@ -232,6 +253,12 @@ export default async function(){
                 if(!letterSpacing){
                     errors.push(`${token}: Couldn't find letter spacing`)
                 }
+                if(!stretch){
+                    warnings.push(`${token}: Couldn't find stretch in the font map`)
+                }
+                if(!isItalic){
+                    warnings.push(`${token}: Couldn't find isItalic in the font map`)
+                }
 
 
                 obj[token] = {
@@ -240,12 +267,14 @@ export default async function(){
                 "fontSize": `{{fonts.${fontSize}}}`,
                 "lineHeight": `{{fonts.${lineHeight}}}`,
                 "letterSpacing": `{{fonts.${letterSpacing}}}`,
-                "fontStretch": `${stretch}`,
-                "italic": `${isItalic}`
             }
+                if(stretch && isItalic){
+                    obj[token].fontStretch =`${stretch}`,
+                    obj[token].italic =  `${isItalic}`
+                }
             
         })
-        return {data: obj, errors: errors}
+        return {data: obj, errors: Array.from(new Set(errors))}
     }
 
     return {

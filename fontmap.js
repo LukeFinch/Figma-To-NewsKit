@@ -23,7 +23,8 @@ var config = {
 };
 
 axios(config)
-.then(function (response) {
+.then(function (response) { 
+  console.log(response.data.meta.fonts)
   //console.log(JSON.stringify(response.data));
   if(!response.data.error){
     mapStyles(response.data.meta.fonts)

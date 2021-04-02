@@ -1,40 +1,41 @@
 <template>
-  <Toolbar/>
-<button @click="saveFiles"  class="button button--primary">Export</button>
-  <theme-nav/>
-    <router-view v-slot="{ Component }" class="contentView">
-      <transition name="fade">
-      <component :is="Component"/>
-      </transition>
-  </router-view>
+<div id="ui">
+
+<ThemeNav/>
+
+  
+<h1>{{$route.path}}</h1>
+
+
+</div>
+
 </template>
+
 <script>
 import JSZip from 'jszip'
-const secrets = require('../../secrets.js').default
-import Toolbar from './components/Toolbar.vue'
-import Disclosure from './components/Disclosure.vue'
-import jsonData from './components/jsondata.vue'
-import ThemeNav from './components/ThemeNav.vue'
+const secrets = require('../../../../secrets').default
+import Disclosure from '../../components/Disclosure.vue'
+import jsonData from '../../components/jsondata.vue'
+import ThemeNav from '../../components/ThemeNav.vue'
 //import 'vue-json-pretty/lib/styles.css';
-import './json-style.css'
+import '../../json-style.css'
 import 'figma-plugin-ds/dist/figma-plugin-ds.css'
 import '@lukefinch/figmaicons/dist/figmaicons.css'
 import {
   dispatch,
   handleEvent
-} from "./uiMessageHandler";
+} from "../../uiMessageHandler";
 import {
   computed,
   onMounted,
   ref,
 } from 'vue';
 
-import { useStore } from './store/store'
-import { themeStore } from './store/themeStore'
+import { useStore } from '../../store/store'
+import { themeStore } from '../../store/themeStore'
 
 export default {
   components: {
-    Toolbar,
     ThemeNav,
     Disclosure,
     jsonData
@@ -42,8 +43,6 @@ export default {
   setup() {
       const store = useStore()
       const theme = themeStore()
-    
-
   
 
   const allLoaded = computed(() => {
@@ -217,63 +216,31 @@ api.setBranch('main')
     }
 
     onMounted(() => {
+
+
       console.log('The Doc is mounted')
+
       dispatch('UIReady')
+
       const app = document.getElementById('app')
-      handleEvent('themeData', data => {
-        switch(data.type) {
-          case 'meta':
-            theme.setMeta(data.data,data.errors)
-            break;
-          case 'colors':
-            theme.setColors(data.data,data.errors)
-            break;
-          case 'overlays':
-            theme.setOverlays(data.data,data.errors)
-            break;
-          case 'fonts':
-            theme.setFonts(data.data,data.errors)
-            break;
-          case 'typography':
-            theme.setTypography(data.data,data.errors)
-            break;
-        }
-        console.log(data)
-      })
 
-      handleEvent('allSent', _ => {
-        theme.setAllSent(true)
-      })
 
-      handleEvent('fetch', async data => {
-          let returnData = await fetch(data.url, data.options)
-          .then(response => {            
-            return response.json()
-            }).then(res => {
-              dispatch(data.time,res)
-            }
-            )
-       
-        })
-
-      handleEvent('fetchTextStyles', async data => {
-          await fetch(data.url, data.options)
-          .then(response => {            
-            return response.json()  
-            }).then(res => {
-              var returnData = res.meta.styles.filter(style => style.style_type == "TEXT")
-              
-              dispatch(data.time,returnData)
-            }
-            )       
-        })
-        
 
 
     })
 
     return {
       theme,
+      // metaJson,
+      // metaErr,
+      // colorsJson,
+      // colorsErr,
+      // overlaysJson,
+      // overlaysErr,
+      // fontsJson,
+      // fontsErr,
+      // typographyJson,
+      // typographyErr,
       allLoaded,
       saveFiles,
       gitExport
@@ -283,99 +250,20 @@ api.setBranch('main')
 };
 </script>
 
-<style>
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-</style>
-
-<style lang=scss>
-.capsizedText {
-  padding: 0.05px 0;
-}
-
-.capsizedText::before {	
-  content: "";	
-  margin-top: -0.1826em;	
-  display: block;	
-  height: 0;	
-}
-
-.capsizedText::after {	
-  content: "";	
-  margin-bottom: -0.1826em;	
-  display: block;	
-  height: 0;	
-}
-
-input:placeholder-shown{
-  border-color: var(--black1);
-}
-.icon{
-  background-position: center;
-}
-#app{
-  height: 100vh;
-  width: 100vw;
+<style scoped>
+#ui{
   display: flex;
   flex-direction: column;
-  .contentView{
-    flex-grow: 1;
-  }
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition-duration: 0.3s;
-  transition-property: opacity;
-  transition-timing-function: ease;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--size-medium);
 }
 
-.fade-enter,
-.fade-leave-active {
-  opacity: 0
+.icon{
+  background-position: 0 0;
+}
+
+.type-red{
+  color: var(--red)
 }
 </style>

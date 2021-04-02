@@ -41,6 +41,11 @@ export default {
      onMounted(() => {
      dispatch('splashReady')
     //Login the user with the key we have in storage
+    handleEvent('goToAuth', _ => {
+        router.push({path: 'authenticate'})
+    })
+
+
      handleEvent('figmaKey', key => {  
     let url = 'https://api.figma.com/v1/me'
       fetch(url,{'headers': {'X-Figma-Token': key}})
@@ -59,7 +64,7 @@ export default {
             } else {
                 store.setFigmaKey(key)
                 store.setUser(data.handle, data.img_url, true)
-                router.push({path: 'main'})
+                router.push({path: '/theme/foo'})
                 dispatch('saveFigmaKey', key)
             }
      

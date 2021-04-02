@@ -2,7 +2,7 @@
 import { figmaFetch, fileKey } from '../utils'
 export default async function(){
     var meta = {}
-    const APIKEY = await figma.clientStorage.getAsync('APIKEY')
+    const APIKEY = await figma.clientStorage.getAsync('figmaKey')
     const user = await figmaFetch('https://api.figma.com/v1/me')
 
     meta['document_name'] = figma.root.name

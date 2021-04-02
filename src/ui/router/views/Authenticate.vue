@@ -9,7 +9,7 @@
     <br>
     This lets the plugin view the contents of your files, but can’t edit them
   </p>
-  <form id="figmaKey" @submit.prevent="doAuth" novalidate>
+  <form id="figmaKey" @submit.prevent="doAuth(figmaKey)" novalidate>
   <div class="input-with-button">
       <div class="input input--with-icon">
         <div class="icon icon--key"></div>
@@ -37,11 +37,13 @@ export default {
 
 
   setup(){
+  var regex = /[a-zA-Z0-9]{6}-[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}/
   const store = useStore()
   figmaKey.value = store.getFigmaKey
-  isFormValid.value = figmaKey.value.match(regex)
+  if(figmaKey.value){
+    isFormValid.value = figmaKey.value.match(regex)
+  }
   function checkInvalid(event){
-    let regex = /[a-zA-Z0-9]{6}-[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}/
     isFormValid.value = event.target.value.match(regex) 
     // isFormValid.value = event.target.reportValidity()
   }
@@ -67,7 +69,7 @@ export default {
         keyErr.value = ''
         store.setFigmaKey(key)
         store.setUser(data.handle, data.img_url, true)
-        router.push({path: 'main'})
+        router.push({path: '/theme/foo'})
         dispatch('saveFigmaKey', key)
       }
      

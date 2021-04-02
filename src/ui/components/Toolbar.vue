@@ -1,5 +1,6 @@
 <template>
 <div class="toolbar" v-if="store.name && store.avatar">
+    <p>{{$route.path}}</p>
   <router-link class="user" name="" to="/Authenticate">
       <img class="avatar" :src="store.avatar"><span class="type type--inverse type--small">{{store.name}}</span>
   </router-link>

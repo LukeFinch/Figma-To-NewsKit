@@ -3,7 +3,7 @@ import { defineStore } from "pinia"
 import { computed } from "vue";
 
 interface ThemeItem {
-    data: JSON
+    data: Object
     errors: Array<string>
 }
 
@@ -21,7 +21,13 @@ export const themeStore = defineStore({
     id: "theme",
     state: (): Theme => ({
         allSent: false, //Enables export
-        meta: {data: null, errors: []},
+        meta: {
+            data: {
+            document_name: "",
+            exporter_email: "",
+            exporter_name: "",
+            filekey: ""
+        }, errors: []},
         colors: {data: null, errors: []},
         overlays: {data: null, errors: []},
         fonts: {data: null, errors: []},
